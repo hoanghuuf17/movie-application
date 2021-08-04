@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
     Text,
-    StyleSheet,
     TextInput,
     View, SafeAreaView,
     ScrollView,
@@ -12,6 +11,7 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
+import SearchItem from './../../components/SearchItem.js';
 
 const SearchSreen = () => {
     const [data, setData] = useState([
@@ -20,15 +20,14 @@ const SearchSreen = () => {
             rating: 4.5,
             info: 'Eng | Fiction | 2h10m'
         },
-
         {
-            name: 'Iron Men 3',
+            name: 'Iron Man 3',
             rating: 5.0,
             info: 'Eng | Action | 1h30m'
-        }
+        },
     ])
 
-    const [result, setResult] = useState([])
+    const [result, setResult] = useState(data)
     const [input, setInput] = useState('')
 
     const search = (text) => {
@@ -62,7 +61,7 @@ const SearchSreen = () => {
                         placeholderTextColor="#ddd"
                         onChangeText={(text) => search(text)}
                     />
-                    <TouchableOpacity style={styles.btnSearch}>
+                    <TouchableOpacity style={styles.btnSearch} activeOpacity={0.5}>
                         <FontAwesome name="search" size={20} color='white' />
                     </TouchableOpacity>
                 </View>
@@ -73,11 +72,11 @@ const SearchSreen = () => {
                         keyboardVerticalOffset={90}>
                         <TouchableWithoutFeedback keyboard="dismiss">
                             <>
-                                <ScrollView>
-                                    {data &&
-                                        data.map((doc, index) => {
+                                <ScrollView showsVerticalScrollIndicator={false}>
+                                    {result &&
+                                        result.map((doc, index) => {
                                             const { name, rating, info } = doc;
-                                            return (<Text key={index}>{name}</Text>)
+                                            return (<SearchItem key={index} name={name} rating={rating} info={info}/>)
                                         })}
                                 </ScrollView>
                             </>

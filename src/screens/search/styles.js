@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
         flex: 1
     },
     header: {
-        flex: 0.5,
+        flex: 0.75,
         justifyContent: 'center',
     },
     title: {
@@ -23,8 +23,8 @@ export default styles = StyleSheet.create({
         margin: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        flex: 1,
+        flex: 0.75,
+        alignItems: 'center'
     },
     textInput: {
         flex: 1,
@@ -33,13 +33,19 @@ export default styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: '#7F7A84'
     },
-    btnSearch:{
+    btnSearch: {
         backgroundColor: '#FF6802',
-        padding:10, 
+        padding: 10,
         borderRadius: 50,
-        marginLeft : 10
-    },  
+        marginLeft: 10,
+        height: '65%'
+    },
     content: {
-        flex: 9,
+        top: -15,
+        flex: 8.5,
+        marginLeft: 20,
+        marginRight: 20,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })

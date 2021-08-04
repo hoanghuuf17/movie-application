@@ -4,7 +4,7 @@ import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 const Captain = '../../images/captain3.jpg';
-const Hp = '../../images/hp7.png'
+const Hp = '../../images/hp7.png';
 
 const HomeSreen = () => {
     const popular = [1, 2, 3];
@@ -50,7 +50,7 @@ const HomeSreen = () => {
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}>
                             {popular.map((index) => (
-                                <View style={styles.poItem} key={index}>
+                                <TouchableOpacity activeOpacity={0.5} style={styles.poItem} key={index}>
                                     <Image style={styles.poImg} source={require(Hp)} />
                                     <View style={styles.itemBar}>
                                         <View style={{ flexDirection: 'column' }}>
@@ -61,7 +61,7 @@ const HomeSreen = () => {
                                             <Entypo name="controller-play" size={18} color="#FF6802" />
                                         </TouchableOpacity>
                                     </View>
-                                </View>
+                                </TouchableOpacity>
                             ))}
                         </ScrollView>
                     </View>
@@ -77,7 +77,7 @@ const HomeSreen = () => {
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}>
                             {popular.map((index) => (
-                                <View style={styles.poItem} key={index}>
+                                <TouchableOpacity  activeOpacity={0.5} style={styles.poItem} key={index}>
                                     <Image style={[styles.poImg, { height: 130, width: 130 }]} source={require(Hp)} />
                                     <View style={[styles.itemBar, {}]}>
                                         <View style={{ flexDirection: 'column' }}>
@@ -88,7 +88,7 @@ const HomeSreen = () => {
                                             <Entypo name="controller-play" size={18} color="#FF6802" />
                                         </TouchableOpacity>
                                     </View>
-                                </View>
+                                </TouchableOpacity>
                             ))}
                         </ScrollView>
                     </View>
