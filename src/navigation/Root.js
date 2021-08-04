@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeSreen from '../screens/home';
 import SearchSreen from '../screens/search';
 import SavedSreen from '../screens/saved';
-import ProfileSreen from '../screens/saved';
+import ProfileSreen from '../screens/profile';
 import DetailSreen from '../screens/detail';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
