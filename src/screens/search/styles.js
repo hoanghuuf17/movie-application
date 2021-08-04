@@ -45,7 +45,6 @@ export default styles = StyleSheet.create({
         flex: 8.5,
         marginLeft: 20,
         marginRight: 20,
-        alignItems: 'center',
         justifyContent: 'center'
     }
 })
