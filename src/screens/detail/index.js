@@ -34,7 +34,7 @@ const DetailSreen = ({ navigation }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: false,
-            headerStyle: { backgroundColor: '#21182C', shadowColor: 'transparent' },
+            headerStyle: { backgroundColor: '#1F1C2C', shadowColor: 'transparent' },
             headerLeft: () => (
                 <TouchableOpacity style={{ marginLeft: 20 }} onPress={navigation.goBack}>
                     <AntDesign name="arrowleft" size={24} color="white" />

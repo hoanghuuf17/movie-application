@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeSreen from '../screens/home';
+import SignUpSreen from '../screens/signup';
+import LoginSreen from '../screens/login';
 import SearchSreen from '../screens/search';
 import SavedSreen from '../screens/saved';
 import ProfileSreen from '../screens/profile';
