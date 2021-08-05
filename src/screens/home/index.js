@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, SafeAreaView, ScrollView, Text, TouchableOpacity, Pressable, Image } from 'react-native';
+import { View, SafeAreaView, ScrollView, Text, TouchableOpacity, Pressable, Image, FlatList } from 'react-native';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import RecommendItem from '../../components/RecommendItem.js';
 import Entypo from 'react-native-vector-icons/Entypo';
 const Captain = '../../images/captain3.jpg';
 const Hp = '../../images/hp7.png';
 
-const HomeSreen = () => {
+const HomeSreen = ({ navigation }) => {
     const popular = [1, 2, 3];
     return (
         <SafeAreaView style={styles.container}>
@@ -44,54 +45,26 @@ const HomeSreen = () => {
                         <Text style={styles.popularTitle}>Popular</Text>
                         <Entypo name="dots-three-horizontal" size={23} color="#FF6802" />
                     </View>
-                    <View style={{ flex: 1 }}>
-                        <ScrollView
-                            contentContainerStyle={styles.scrStyle}
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}>
-                            {popular.map((index) => (
-                                <TouchableOpacity activeOpacity={0.5} style={styles.poItem} key={index}>
-                                    <Image style={styles.poImg} source={require(Hp)} />
-                                    <View style={styles.itemBar}>
-                                        <View style={{ flexDirection: 'column' }}>
-                                            <Text style={styles.itemName}>Harry Potter 7</Text>
-                                            <Text style={styles.itemRating}><Entypo name="star" size={18} color="#EFCD09" /> 4.5</Text>
-                                        </View>
-                                        <TouchableOpacity style={styles.itemplayBtn}>
-                                            <Entypo name="controller-play" size={18} color="#FF6802" />
-                                        </TouchableOpacity>
-                                    </View>
-                                </TouchableOpacity>
-                            ))}
-                        </ScrollView>
-                    </View>
+                    <FlatList
+                        data={popular}
+                        renderItem={({ item }) => <RecommendItem size={170} onPress={() => navigation.navigate('Detail')} />}
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={(index) => index}
+                        horizontal={true}
+                    />
                 </View>
                 <View style={styles.maylike}>
                     <View style={styles.popularHeader}>
                         <Text style={styles.popularTitle}>You may like</Text>
                         <Entypo name="dots-three-horizontal" size={23} color="#FF6802" />
                     </View>
-                    <View style={{ flex: 1 }}>
-                        <ScrollView
-                            contentContainerStyle={styles.scrStyle}
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}>
-                            {popular.map((index) => (
-                                <TouchableOpacity  activeOpacity={0.5} style={styles.poItem} key={index}>
-                                    <Image style={[styles.poImg, { height: 130, width: 130 }]} source={require(Hp)} />
-                                    <View style={[styles.itemBar, {}]}>
-                                        <View style={{ flexDirection: 'column' }}>
-                                            <Text style={[styles.itemName, { fontWeight: '500', fontSize: 12, }]}>Harry Potter 7</Text>
-                                            <Text style={[styles.itemRating, { fontWeight: '500', fontSize: 12, }]}><Entypo name="star" size={15} color="#EFCD09" /> 4.5</Text>
-                                        </View>
-                                        <TouchableOpacity style={[styles.itemplayBtn, { marginLeft: 7, marginRight: 5, }]}>
-                                            <Entypo name="controller-play" size={18} color="#FF6802" />
-                                        </TouchableOpacity>
-                                    </View>
-                                </TouchableOpacity>
-                            ))}
-                        </ScrollView>
-                    </View>
+                    <FlatList
+                        data={popular}
+                        renderItem={({ item }) => <RecommendItem size={130} onPress={() => navigation.navigate('Detail')} />}
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={(index) => index}
+                        horizontal={true}
+                    />
                 </View>
                 <View style={styles.nothing}></View>
             </View>

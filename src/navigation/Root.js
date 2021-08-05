@@ -63,7 +63,7 @@ const Root = () => {
                     {() =>
                         <Stack.Navigator>
                             <Stack.Screen name="Home" component={HomeSreen} options={{ headerShown: false }} />
-                            <Stack.Screen name="Detail" component={DetailSreen} options={{ headerShown: false }} />
+                            <Stack.Screen name="Detail" component={DetailSreen}/>
                         </Stack.Navigator>}
                 </Tab.Screen>
                 <Tab.Screen name="Search" component={SearchSreen} options={{

@@ -18,7 +18,6 @@ export default styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: 20,
         paddingRight: 20
-
     },
     oustanding: {
         flex: 3,
@@ -26,9 +25,11 @@ export default styles = StyleSheet.create({
     },
     popular: {
         flex: 2.75,
+        marginLeft: 20
     },
     maylike: {
         flex: 2.25,
+        marginLeft: 20
     },
     nothing: {
         flex: 0.5,
@@ -78,8 +79,8 @@ export default styles = StyleSheet.create({
     popularHeader:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: 20,
         marginRight: 20,
+        marginVertical : 5
     },  
     popularTitle: {
         fontSize: 20,
