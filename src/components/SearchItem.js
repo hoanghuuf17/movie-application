@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 const Hp = '../images/hp7.png';
 
 
 const SearchItem = ({ name, rating, info }) => {
+    const [heart, setHeart] = useState(true)
+
     return (
         <TouchableOpacity activeOpacity={0.5} style={styles.container}>
             <Image source={require(Hp)} style={styles.image} />
@@ -15,8 +17,8 @@ const SearchItem = ({ name, rating, info }) => {
                 <Text style={styles.rating}><Entypo name="star" size={20} color="#EFCD09" /> {rating}</Text>
             </View>
             <View style={styles.btns}>
-                <TouchableOpacity>
-                    <MaterialCommunityIcons name='tag-multiple-outline' size={28} color='white' />
+                <TouchableOpacity onPress={() => setHeart(!heart)}>
+                    <AntDesign name={heart ? 'heart' : 'hearto'} size={22} color='white' />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.playBtn}>
                     <Entypo name="controller-play" size={28} color="#FF6802" />

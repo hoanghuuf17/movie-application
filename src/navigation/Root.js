@@ -10,6 +10,7 @@ import ProfileSreen from '../screens/profile';
 import DetailSreen from '../screens/detail';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -63,7 +64,7 @@ const Root = () => {
                     {() =>
                         <Stack.Navigator>
                             <Stack.Screen name="Home" component={HomeSreen} options={{ headerShown: false }} />
-                            <Stack.Screen name="Detail" component={DetailSreen}/>
+                            <Stack.Screen name="Detail" component={DetailSreen} />
                         </Stack.Navigator>}
                 </Tab.Screen>
                 <Tab.Screen name="Search" component={SearchSreen} options={{
@@ -83,7 +84,7 @@ const Root = () => {
                 <Tab.Screen name="Saved" component={SavedSreen} options={{
                     tabBarIcon: ({ focused }) =>
                         <View style={{ position: 'absolute', top: '50%' }}>
-                            <MaterialCommunityIcons name={focused ? 'tag-multiple' : 'tag-multiple-outline'} size={28} color='white' />
+                            <AntDesign name={focused ? 'heart' : 'hearto'} size={22} color='white' />
                         </View>
                 }} listeners={({ navigation, route }) => ({
                     tabPress: e => {
