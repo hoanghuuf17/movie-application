@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 export default styles = StyleSheet.create({
     container: {
-        backgroundColor: '#21182C',
+        backgroundColor: '#1F1C2C',
         height: '100%',
     },
     box: {
@@ -16,14 +16,6 @@ export default styles = StyleSheet.create({
         flex: 1,
         borderRadius: 20,
     },
-    // ostName: {
-    //     color: 'white',
-    //     position: 'absolute',
-    //     bottom: 70,
-    //     left: 30,
-    //     fontWeight: '600',
-    //     fontSize: 20,
-    // },
     posterRating: {
         color: 'white',
         position: 'absolute',

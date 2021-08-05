@@ -32,7 +32,7 @@ const Root = () => {
                 tabBarOptions={{
                     showLabel: false,
                     style: {
-                        backgroundColor: '#32293C',
+                        backgroundColor: '#383340',
                         bottom: 16,
                         position: 'absolute',
                         marginHorizontal: 20,

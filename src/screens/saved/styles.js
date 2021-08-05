@@ -3,7 +3,7 @@ export default styles = StyleSheet.create({
     container: {
         display: 'flex',
         flex: 1,
-        backgroundColor: '#21182C'
+        backgroundColor: '#1F1C2C'
     },
     box: {
         flex: 1,
