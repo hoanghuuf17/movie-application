@@ -1,13 +1,24 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useContext, useState } from 'react';
 import { View, SafeAreaView, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Foundation from 'react-native-vector-icons/Foundation';
-import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../features/appAuth';
 import styles from './styles';
 
 const SignUpSreen = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const [auth, setAuth] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+
+    const signUpHandel = () => {
+        dispatch(signUp({
+            email: auth.email,
+        }));
+    }
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -40,6 +51,8 @@ const SignUpSreen = ({ navigation }) => {
                     <View style={styles.name}>
                         <Text style={styles.formTitle}>Name</Text>
                         <TextInput
+                            value={auth.name}
+                            onChangeText={e => { setAuth({ ...auth, name: e }) }}
                             style={styles.textInput}
                             placeholder='Enter your full name'
                             placeholderTextColor='#9C9C9C'
@@ -48,6 +61,8 @@ const SignUpSreen = ({ navigation }) => {
                     <View style={styles.email}>
                         <Text style={styles.formTitle}>Email</Text>
                         <TextInput
+                            value={auth.email}
+                            onChangeText={e => { setAuth({ ...auth, email: e }) }}
                             style={styles.textInput}
                             placeholder='Enter your email'
                             placeholderTextColor='#9C9C9C'
@@ -56,20 +71,24 @@ const SignUpSreen = ({ navigation }) => {
                     <View style={styles.password}>
                         <Text style={styles.formTitle}>Password</Text>
                         <TextInput
+                            value={auth.password}
+                            onChangeText={e => { setAuth({ ...auth, password: e }) }}
                             style={[styles.textInput, { color: '#9C9C9C' }]}
                             placeholder='Enter your password'
                             placeholderTextColor='#9C9C9C'
                         />
                     </View>
                     <View style={styles.login}>
-                        <LinearGradient start={{ x: 0, y: 0 }} colors={['#A26D5C', '#BF765A', '#F48753']} style={styles.linearGradient}>
-                            <Text style={styles.txtLogin}>Register</Text>
-                        </LinearGradient>
+                        <TouchableOpacity onPress={signUpHandel} activeOpacity={0.5}>
+                            <LinearGradient start={{ x: 0, y: 0 }} colors={['#A26D5C', '#BF765A', '#F48753']} style={styles.linearGradient}>
+                                <Text style={styles.txtLogin}>Register</Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.bottom}>
                     <Text style={styles.txtBottom}>Already have an account? {''}
-                        <Pressable onPress={() => alert('Pressed')}>
+                        <Pressable onPress={() => navigation.navigate('Login')}>
                             <Text style={styles.txtSignUp}>
                                 Login
                             </Text>

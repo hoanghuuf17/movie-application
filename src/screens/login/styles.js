@@ -17,7 +17,7 @@ export default styles = StyleSheet.create({
     loginTitle: {
         color: 'white',
         fontWeight: 'bold',
-        marginHorizontal: 15,
+        // marginHorizontal: 15,
         fontSize: 24
     },
     options: {

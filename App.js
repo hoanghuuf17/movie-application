@@ -1,29 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
-  View,
   StatusBar,
-  useColorScheme,
-  SafeAreaView,
 } from 'react-native';
-import Root from './src/navigation/Root';
+import { Provider } from 'react-redux';
+import store from './src/app/store';
+import CheckAuth from './src/components/CheckAuth';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
 
   return (
-    <>
-      <StatusBar barStyle='light-content'/>
-      <Root/>
-    </>
+    <Provider store={store}>
+      <StatusBar barStyle='light-content' />
+      <CheckAuth />
+    </Provider>
   );
 };
 

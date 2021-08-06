@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -7,8 +7,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
 const Pic = '../../images/avatar.jpg';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../../features/appAuth';
 
 const ProfileSreen = () => {
+    const dispatch = useDispatch();
+
+
+    const siggOutHandle = () => {
+        dispatch(signOut())
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.box}>
@@ -46,9 +55,9 @@ const ProfileSreen = () => {
                         <MaterialIcons style={styles.rowIconRight} name='keyboard-arrow-right' size={25} color='white' />
                     </TouchableOpacity>
 
-                    <TouchableOpacity activeOpacity={0.5} style={[styles.row,{width: '40%'}]}>
+                    <TouchableOpacity activeOpacity={0.5} style={[styles.row, { width: '40%' }]} onPress={siggOutHandle}>
                         <AntDesign style={styles.rowIconLeft} name="logout" size={25} color='#FF4C55' />
-                        <Text style={[styles.rowTitle,{left: 10}]}>Sign Out</Text>
+                        <Text style={[styles.rowTitle, { left: 10 }]}>Sign Out</Text>
                     </TouchableOpacity>
                 </View>
             </View>
