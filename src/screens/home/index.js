@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, SafeAreaView, ScrollView, Text, TouchableOpacity, Pressable, Image, FlatList } from 'react-native';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -8,7 +8,35 @@ const Captain = '../../images/captain3.jpg';
 const Hp = '../../images/hp7.png';
 
 const HomeSreen = ({ navigation }) => {
+    const [active, setActive] = useState(0);
+    console.log(active)
     const popular = [1, 2, 3];
+    const movies = [
+        {
+            id: 0,
+            name: 'Captain America: Civil War',
+            image: require('../../images/captain3.jpg'),
+        },
+        {
+            id: 1,
+            name: 'Saw IX',
+            image: require('../../images/saw.png'),
+        },
+        {
+            id: 2,
+            name: 'IT: Chater two',
+            image: require('../../images/it.png'),
+        },
+    ]
+
+    const change = ({ nativeEvent }) => {
+        const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
+        if (slide !== active) {
+            setActive(slide)
+        }
+    }
+
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.box}>
@@ -32,14 +60,37 @@ const HomeSreen = ({ navigation }) => {
                         <AntDesign name="filter" size={25} color="white" />
                     </TouchableOpacity>
                 </View>
-                <View style={styles.oustanding}>
-                    <Image style={styles.ostImg} source={require(Captain)} />
-                    <Text style={styles.ostName}>Captain Ameraica: civil war</Text>
-                    <Text style={styles.ostRating}><Entypo name="star" size={25} color="#EFCD09" /> 5.0</Text>
-                    <TouchableOpacity style={styles.playBtn}>
-                        <Entypo name="controller-play" size={28} color="#FF6802" />
-                    </TouchableOpacity>
+                <View style={{
+                    flex: 3,
+                    padding: 20,
+                }}>
+                    <ScrollView
+                        pagingEnabled
+                        onScroll={change}
+                        showsHorizontalScrollIndicator={false}
+                        horizontal={true}>
+                        {
+                            movies.map(({ id, name, image }) => (
+                                <View key={id} style={styles.ostItem}>
+                                    <Image style={styles.ostImg} source={image} />
+                                    <Text style={styles.ostName}>{name}</Text>
+                                    <Text style={styles.ostRating}><Entypo name="star" size={25} color="#EFCD09" /> 5.0</Text>
+                                    <TouchableOpacity style={styles.playBtn} onPress={() => navigation.navigate('Detail', { id, name, image })}>
+                                        <Entypo name="controller-play" size={28} color="#FF6802" />
+                                    </TouchableOpacity>
+                                </View>
+                            ))
+                        }
+                    </ScrollView>
+                    <View style={styles.pagpination}>
+                        {
+                            movies.map(({ id }) => (
+                                <Text key={id} style={active === id ? styles.paginTextActive : styles.paginText}>●</Text>
+                            ))
+                        }
+                    </View>
                 </View>
+
                 <View style={styles.popular}>
                     <View style={styles.popularHeader}>
                         <Text style={styles.popularTitle}>Popular</Text>

@@ -1,4 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const width = Dimensions.get('window').width - 40;
+console.log(width)
+const height = width * 0.1
 export default styles = StyleSheet.create({
     container: {
         backgroundColor: '#1F1C2C',
@@ -21,7 +25,26 @@ export default styles = StyleSheet.create({
     },
     oustanding: {
         flex: 3,
-        padding: 20
+        padding: 20,
+    },
+    ostItem: {
+        // marginRight : 1
+    },
+    pagpination: {
+        flexDirection: 'row',
+        position: 'absolute',
+        bottom: 25,
+        alignSelf: 'center',
+    },
+    paginText: {
+        fontSize: 11,
+        color: '#9c9c9c',
+        marginHorizontal: 5
+    },
+    paginTextActive: {
+        fontSize: 11,
+        color: '#fff',
+        marginHorizontal: 5
     },
     popular: {
         flex: 2.75,
@@ -49,9 +72,10 @@ export default styles = StyleSheet.create({
         padding: 10
     },
     ostImg: {
-        width: '100%',
+        width,
         flex: 1,
         borderRadius: 20,
+        resizeMode: 'cover'
     },
     ostName: {
         color: 'white',
@@ -76,12 +100,12 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
         padding: 3
     },
-    popularHeader:{
+    popularHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginRight: 20,
-        marginVertical : 5
-    },  
+        marginVertical: 5
+    },
     popularTitle: {
         fontSize: 20,
         fontWeight: '600',
@@ -118,7 +142,7 @@ export default styles = StyleSheet.create({
     },
     itemRating: {
         color: 'white',
-        fontWeight : 'bold',
+        fontWeight: 'bold',
         fontSize: 15,
     },
     itemplayBtn: {
