@@ -91,7 +91,7 @@ export default styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         fontWeight: '500',
-        bottom: 7
+        top: 4
     },
     recommended: {
         flex: 3.25,

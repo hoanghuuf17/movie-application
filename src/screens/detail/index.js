@@ -7,7 +7,8 @@ import RecommendItem from '../../components/RecommendItem.js';
 import styles from './styles';
 const Captain = '../../images/captain3.jpg';
 
-const DetailSreen = ({ navigation }) => {
+const DetailSreen = ({ route, navigation }) => {
+    const { name, image, info, description, actors } = route.params
     const [heart, setHeart] = useState(true)
     const cast = [
         {
@@ -52,7 +53,7 @@ const DetailSreen = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.box}>
                 <View style={styles.poster}>
-                    <Image style={styles.posterImg} source={require(Captain)} />
+                    <Image style={styles.posterImg} source={image} />
                     <Text style={styles.posterRating}><Entypo name="star" size={25} color="#EFCD09" /> 5.0</Text>
                     <View style={styles.posterBgr}>
                         <TouchableOpacity style={styles.playBtn}>
@@ -62,22 +63,18 @@ const DetailSreen = ({ navigation }) => {
                     </View>
                 </View>
                 <View style={styles.infos}>
-                    <Text style={styles.name}>Captain Ameraica: civil war</Text>
-                    <Text style={styles.info}>Eng | Action | 1h30m</Text>
+                    <Text style={styles.name}>{name}</Text>
+                    <Text style={styles.info}>{info}</Text>
                 </View>
                 <View style={styles.line}></View>
                 <View style={styles.detail}>
                     <Text style={styles.detailTitle}>Story line</Text>
-                    <Text style={styles.detailContent}>Political involvement in the Avengers'
-                        affairs causes a rift between Captain America and Iron Man. With many
-                        people fearing the actions of super heroes, the government decides to push
-                        for the Hero Registration Act, a law that limits a hero's actions. This
-                        results in a division in The Avengers.</Text>
+                    <Text style={styles.detailContent}>{description}</Text>
                 </View>
                 <View style={styles.cast}>
                     <Text style={styles.castTitle}>Star cast</Text>
                     <FlatList
-                        data={cast}
+                        data={actors}
                         renderItem={({ item }) => <CastItem item={item} />}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={item => item.id}
@@ -88,7 +85,7 @@ const DetailSreen = ({ navigation }) => {
                     <Text style={styles.recommendedTitle}>Recommended</Text>
                     <FlatList
                         data={cast}
-                        renderItem={({ item }) => <RecommendItem item={item} size={130} onPress={()=> navigation.navigate('Detail')}/>}
+                        renderItem={({ item }) => <RecommendItem item={item} size={130} onPress={() => navigation.navigate('Detail')} />}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={item => item.id}
                         horizontal={true}

@@ -4,38 +4,18 @@ import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import RecommendItem from '../../components/RecommendItem.js';
 import Entypo from 'react-native-vector-icons/Entypo';
-const Captain = '../../images/captain3.jpg';
-const Hp = '../../images/hp7.png';
+import movies from '../../data/movies.js';
 
 const HomeSreen = ({ navigation }) => {
     const [active, setActive] = useState(0);
-    console.log(active)
     const popular = [1, 2, 3];
-    const movies = [
-        {
-            id: 0,
-            name: 'Captain America: Civil War',
-            image: require('../../images/captain3.jpg'),
-        },
-        {
-            id: 1,
-            name: 'Saw IX',
-            image: require('../../images/saw.png'),
-        },
-        {
-            id: 2,
-            name: 'IT: Chater two',
-            image: require('../../images/it.png'),
-        },
-    ]
-
+    
     const change = ({ nativeEvent }) => {
         const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
         if (slide !== active) {
             setActive(slide)
         }
     }
-
 
     return (
         <SafeAreaView style={styles.container}>
@@ -70,12 +50,12 @@ const HomeSreen = ({ navigation }) => {
                         showsHorizontalScrollIndicator={false}
                         horizontal={true}>
                         {
-                            movies.map(({ id, name, image }) => (
+                            movies.map(({ id, name, image, info, description, actors }) => (
                                 <View key={id} style={styles.ostItem}>
                                     <Image style={styles.ostImg} source={image} />
                                     <Text style={styles.ostName}>{name}</Text>
                                     <Text style={styles.ostRating}><Entypo name="star" size={25} color="#EFCD09" /> 5.0</Text>
-                                    <TouchableOpacity style={styles.playBtn} onPress={() => navigation.navigate('Detail', { id, name, image })}>
+                                    <TouchableOpacity style={styles.playBtn} onPress={() => navigation.navigate('Detail', { id, name, image, info, description, actors })}>
                                         <Entypo name="controller-play" size={28} color="#FF6802" />
                                     </TouchableOpacity>
                                 </View>
