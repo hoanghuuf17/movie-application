@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 export default styles = StyleSheet.create({
     container: {
         backgroundColor: '#1F1C2C',
@@ -15,6 +16,7 @@ export default styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         borderRadius: 20,
+        resizeMode: 'cover'
     },
     posterRating: {
         color: 'white',

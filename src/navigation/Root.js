@@ -4,8 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeSreen from '../screens/home';
-import SignUpSreen from '../screens/signup';
-import LoginSreen from '../screens/login';
 import SearchSreen from '../screens/search';
 import SavedSreen from '../screens/saved';
 import ProfileSreen from '../screens/profile';
@@ -16,7 +14,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Feather from 'react-native-vector-icons/Feather';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

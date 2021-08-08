@@ -3,14 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
 const CastItem = ({ item }) => {
-    const { id, role, name, image } = item;
+    const { role, name, image } = item;
 
     return (
         <View style={styles.container}>
             <Avatar
                 size={50}
                 rounded
-                source={image}
+                source={{ url: image }}
             />
             <View style={styles.info}>
                 <Text style={styles.role}>{role}</Text>
@@ -23,19 +23,19 @@ const CastItem = ({ item }) => {
 export default CastItem
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         flexDirection: 'row',
         alignItems: 'center',
     },
-    info:{
+    info: {
         marginHorizontal: 12
     },
-    role:{
+    role: {
         color: '#9c9c9c',
-        fontWeight : '500'
+        fontWeight: '500'
     },
-    name:{
+    name: {
         color: 'white',
-        fontWeight : '500'
+        fontWeight: '500'
     }
 })

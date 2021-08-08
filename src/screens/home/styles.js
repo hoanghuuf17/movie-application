@@ -1,8 +1,8 @@
 import { StyleSheet, Dimensions } from 'react-native';
-
 const width = Dimensions.get('window').width - 40;
-console.log(width)
 const height = width * 0.1
+
+
 export default styles = StyleSheet.create({
     container: {
         backgroundColor: '#1F1C2C',
@@ -80,7 +80,7 @@ export default styles = StyleSheet.create({
     ostName: {
         color: 'white',
         position: 'absolute',
-        bottom: 70,
+        bottom: 65,
         left: 30,
         fontWeight: '600',
         fontSize: 20,

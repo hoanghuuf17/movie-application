@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { View, SafeAreaView, ScrollView, Text, TouchableOpacity, Pressable, Image, FlatList } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, SafeAreaView, ScrollView, Text, TouchableOpacity, Pressable, Image, FlatList, Animated } from 'react-native';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import RecommendItem from '../../components/RecommendItem.js';
 import Entypo from 'react-native-vector-icons/Entypo';
-import movies from '../../data/movies.js';
+import { movies, popular, recommended } from '../../data/movies.js';
 
 const HomeSreen = ({ navigation }) => {
     const [active, setActive] = useState(0);
-    const popular = [1, 2, 3];
-    
+
     const change = ({ nativeEvent }) => {
         const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
         if (slide !== active) {
@@ -47,15 +46,18 @@ const HomeSreen = ({ navigation }) => {
                     <ScrollView
                         pagingEnabled
                         onScroll={change}
+                        scrollEventThrottle={0}
                         showsHorizontalScrollIndicator={false}
                         horizontal={true}>
                         {
                             movies.map(({ id, name, image, info, description, actors }) => (
                                 <View key={id} style={styles.ostItem}>
-                                    <Image style={styles.ostImg} source={image} />
+                                    <Image style={styles.ostImg} source={{ url: image }} />
                                     <Text style={styles.ostName}>{name}</Text>
                                     <Text style={styles.ostRating}><Entypo name="star" size={25} color="#EFCD09" /> 5.0</Text>
-                                    <TouchableOpacity style={styles.playBtn} onPress={() => navigation.navigate('Detail', { id, name, image, info, description, actors })}>
+                                    <TouchableOpacity
+                                        style={styles.playBtn}
+                                        onPress={() => navigation.navigate('Detail', { id, name, image, info, description, actors })}>
                                         <Entypo name="controller-play" size={28} color="#FF6802" />
                                     </TouchableOpacity>
                                 </View>
@@ -78,9 +80,12 @@ const HomeSreen = ({ navigation }) => {
                     </View>
                     <FlatList
                         data={popular}
-                        renderItem={({ item }) => <RecommendItem size={170} onPress={() => navigation.navigate('Detail')} />}
+                        renderItem={({ item }) =>
+                            <RecommendItem item={item} size={170} onPress={() => navigation.navigate('Detail',
+                                { name: item.name, image: item.image, info: item.info, description: item.description, actors: item.actors }
+                            )} />}
                         showsHorizontalScrollIndicator={false}
-                        keyExtractor={(index) => index}
+                        keyExtractor={({ id }) => id}
                         horizontal={true}
                     />
                 </View>
@@ -90,10 +95,12 @@ const HomeSreen = ({ navigation }) => {
                         <Entypo name="dots-three-horizontal" size={23} color="#FF6802" />
                     </View>
                     <FlatList
-                        data={popular}
-                        renderItem={({ item }) => <RecommendItem size={130} onPress={() => navigation.navigate('Detail')} />}
+                        data={recommended}
+                        renderItem={({ item }) =>
+                            <RecommendItem item={item} size={130} onPress={() => navigation.navigate('Detail',
+                                { name: item.name, image: item.image, info: item.info, description: item.description, actors: item.actors })} />}
                         showsHorizontalScrollIndicator={false}
-                        keyExtractor={(index) => index}
+                        keyExtractor={({ id }) => id}
                         horizontal={true}
                     />
                 </View>

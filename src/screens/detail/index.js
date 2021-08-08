@@ -5,32 +5,11 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import CastItem from '../../components/CastItem.js';
 import RecommendItem from '../../components/RecommendItem.js';
 import styles from './styles';
-const Captain = '../../images/captain3.jpg';
+import { recommended } from '../../data/movies.js';
 
 const DetailSreen = ({ route, navigation }) => {
     const { name, image, info, description, actors } = route.params
     const [heart, setHeart] = useState(true)
-    const cast = [
-        {
-            id: 1,
-            role: 'Actor',
-            name: 'Chris Evans',
-            image: require('../../images/chris.png')
-        },
-        {
-            id: 2,
-            role: 'Actor',
-            name: 'Samuel L. Jackson',
-            image: require('../../images/samuel.png')
-
-        },
-        {
-            id: 3,
-            role: 'Actor',
-            name: 'Robert Downey Jr',
-            image: require('../../images/robert.png')
-        }
-    ]
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -53,7 +32,7 @@ const DetailSreen = ({ route, navigation }) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.box}>
                 <View style={styles.poster}>
-                    <Image style={styles.posterImg} source={image} />
+                    <Image style={styles.posterImg} source={{ uri: image }} />
                     <Text style={styles.posterRating}><Entypo name="star" size={25} color="#EFCD09" /> 5.0</Text>
                     <View style={styles.posterBgr}>
                         <TouchableOpacity style={styles.playBtn}>
@@ -84,10 +63,12 @@ const DetailSreen = ({ route, navigation }) => {
                 <View style={styles.recommended}>
                     <Text style={styles.recommendedTitle}>Recommended</Text>
                     <FlatList
-                        data={cast}
-                        renderItem={({ item }) => <RecommendItem item={item} size={130} onPress={() => navigation.navigate('Detail')} />}
+                        data={recommended}
+                        renderItem={({ item }) =>
+                            <RecommendItem item={item} size={130} onPress={() => navigation.navigate('Detail',
+                                { name: item.name, image: item.image, info: item.info, description: item.description, actors: item.actors })} />}
                         showsHorizontalScrollIndicator={false}
-                        keyExtractor={item => item.id}
+                        keyExtractor={({ id }) => id}
                         horizontal={true}
                     />
                 </View>
