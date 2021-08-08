@@ -8,31 +8,23 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity
 } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import SearchItem from './../../components/SearchItem.js';
+import { movies, popular, recommended } from '../../data/movies.js'
+
 
 const SearchSreen = () => {
-    const [data, setData] = useState([
-        {
-            name: 'Harry Potter 7',
-            rating: 4.5,
-            info: 'Eng | Fiction | 2h10m'
-        },
-        {
-            name: 'Iron Man 3',
-            rating: 5.0,
-            info: 'Eng | Action | 1h30m'
-        },
-    ])
+    let array = []
+    let list = array.concat(movies, popular, recommended)
+    const [data, setData] = useState(list.splice(0,2))
 
     const [result, setResult] = useState(data)
     const [input, setInput] = useState('')
 
     const search = (text) => {
         if (text) {
-            const newData = data.filter(
+            const newData = list.filter(
                 function (item) {
                     const itemData = item.name
                         ? item.name.toUpperCase()
@@ -75,8 +67,8 @@ const SearchSreen = () => {
                                 <ScrollView showsVerticalScrollIndicator={false}>
                                     {result &&
                                         result.map((doc, index) => {
-                                            const { name, rating, info } = doc;
-                                            return (<SearchItem key={index} name={name} rating={rating} info={info}/>)
+                                            const { name, info, image } = doc;
+                                            return (<SearchItem key={index} name={name} info={info} image={image} />)
                                         })}
                                 </ScrollView>
                             </>

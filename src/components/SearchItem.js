@@ -5,16 +5,16 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 const Hp = '../images/hp7.png';
 
 
-const SearchItem = ({ name, rating, info }) => {
-    const [heart, setHeart] = useState(true)
+const SearchItem = ({ name, info, image }) => {
+    const [heart, setHeart] = useState(false);
 
     return (
         <TouchableOpacity activeOpacity={0.5} style={styles.container}>
-            <Image source={require(Hp)} style={styles.image} />
+            <Image source={{ url: image }} style={styles.image} />
             <View style={styles.detail}>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.info}>{info}</Text>
-                <Text style={styles.rating}><Entypo name="star" size={20} color="#EFCD09" /> {rating}</Text>
+                <Text style={styles.rating}><Entypo name="star" size={20} color="#EFCD09" />4.5</Text>
             </View>
             <View style={styles.btns}>
                 <TouchableOpacity onPress={() => setHeart(!heart)}>
@@ -37,16 +37,19 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginBottom: 10,
         justifyContent: 'space-between',
-        padding: 10
+        padding: 10, 
+        flex: 1
     },
     image: {
         height: 120,
         width: 120,
-        borderRadius: 15
+        borderRadius: 15,
+        flex: 3.5
     },
     detail: {
         justifyContent: 'space-between',
-        marginLeft: -40
+        marginLeft: 10,
+        flex: 5
     },
     name: {
         color: 'white',
@@ -62,11 +65,13 @@ const styles = StyleSheet.create({
     },
     btns: {
         justifyContent: 'space-between',
-        marginRight: 0
+        marginRight: 0, 
+        flex: 1
     },
     playBtn: {
         backgroundColor: 'white',
         borderRadius: 50,
         padding: 3,
+        width: '95%',
     },
 })
