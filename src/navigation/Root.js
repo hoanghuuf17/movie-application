@@ -66,7 +66,7 @@ const Root = () => {
                             <Stack.Screen name="Detail" component={DetailSreen} />
                         </Stack.Navigator>}
                 </Tab.Screen>
-                <Tab.Screen name="Search" component={SearchSreen} options={{
+                <Tab.Screen name="SearchScreen" options={{
                     tabBarIcon: ({ focused }) =>
                         <View style={{ position: 'absolute', top: '50%' }}>
                             {focused ? <Feather name='search' size={26} color='white' />
@@ -79,8 +79,14 @@ const Root = () => {
                             useNativeDriver: true,
                         }).start()
                     }
-                })} />
-                <Tab.Screen name="Saved" component={SavedSreen} options={{
+                })}>
+                    {() =>
+                        <Stack.Navigator>
+                            <Stack.Screen name="Search" component={SearchSreen} options={{ headerShown: false }} />
+                            <Stack.Screen name="Detail" component={DetailSreen} />
+                        </Stack.Navigator>}
+                </Tab.Screen>
+                <Tab.Screen name="SavedScreen" options={{
                     tabBarIcon: ({ focused }) =>
                         <View style={{ position: 'absolute', top: '50%' }}>
                             <AntDesign name={focused ? 'heart' : 'hearto'} size={22} color='white' />
@@ -92,7 +98,13 @@ const Root = () => {
                             useNativeDriver: true,
                         }).start()
                     }
-                })} />
+                })}>
+                    {() =>
+                        <Stack.Navigator>
+                            <Stack.Screen name="Saved" component={SavedSreen} options={{ headerShown: false }} />
+                            <Stack.Screen name="Detail" component={DetailSreen} />
+                        </Stack.Navigator>}
+                </Tab.Screen>
                 <Tab.Screen name="Profile" component={ProfileSreen} options={{
                     tabBarIcon: ({ focused }) =>
                         <View style={{ position: 'absolute', top: '50%' }}>

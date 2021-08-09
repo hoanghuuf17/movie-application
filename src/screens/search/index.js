@@ -12,23 +12,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import SearchItem from './../../components/SearchItem.js';
 import { movies, popular, recommended } from '../../data/movies.js';
-import { useSelector, useDispatch } from 'react-redux';
-import { favorite } from '../../features/appFavorite';
-import { addFavorite } from '../../features/appFavorite';
-
 
 const SearchSreen = () => {
-    const dispatch = useDispatch();
-    const addToFavorite = (doc) => {
-        dispatch(addFavorite({
-            name: doc.name,
-            image: doc.image,
-            info: doc.info,
-            description: doc.description,
-            actors: doc.actors,
-        }));
-    }
-
     let array = []
     let list = array.concat(movies, popular, recommended)
     const [data, setData] = useState(list.splice(0, 2))
@@ -84,7 +69,6 @@ const SearchSreen = () => {
                                             return (<SearchItem
                                                 key={index}
                                                 doc={doc}
-                                                onPress={addToFavorite}
                                             />)
                                         })}
                                 </ScrollView>

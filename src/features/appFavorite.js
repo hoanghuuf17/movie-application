@@ -17,7 +17,9 @@ export const appFavorite = createSlice({
             }]
         },
         unFavorite: (state, action) => {
-
+            state.list = state.list.filter(function (obj){
+                return obj.name !== action.payload.name;
+            });
         },
     },
 });

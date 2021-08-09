@@ -2,12 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
 
 const SavedItem = ({ id, doc, onDelete }) => {
-    const { name, image, info, description, actors } = doc
+    const navigation = useNavigation();
+    const { name, image, info, description, actors } = doc;
+
     return (
-        <TouchableOpacity activeOpacity={0.5} style={styles.container}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => navigation.navigate('Detail',
+            { name, image, info, description, actors })}>
             <Image source={{ url: image }} style={styles.image} />
             <View style={styles.detail}>
                 <Text style={styles.name}>{name}</Text>
@@ -15,7 +19,7 @@ const SavedItem = ({ id, doc, onDelete }) => {
                 <Text style={styles.rating}><Entypo name="star" size={20} color="#EFCD09" /> 4.6</Text>
             </View>
             <View style={styles.btns}>
-                <TouchableOpacity onPress={() => onDelete(id)}>
+                <TouchableOpacity onPress={() => onDelete(id, name)}>
                     <Feather name='delete' size={28} color='white' />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.playBtn}>

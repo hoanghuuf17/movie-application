@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import styles from './styles';
 import SavedItem from '../../components/SavedItem.js';
-import { useSelector } from 'react-redux';
-import { favorite } from '../../features/appFavorite';
+import { useSelector, useDispatch } from 'react-redux';
+import { favorite, unFavorite } from '../../features/appFavorite';
 
 const SavedSreen = () => {
     const listFavorite = useSelector(favorite);
+    const dispatch = useDispatch();
     const [data, setData] = useState([])
 
     useEffect(() => {
@@ -14,10 +15,13 @@ const SavedSreen = () => {
     }, [listFavorite]);
 
 
-    const onDelete = id => {
+    const onDelete = (id, name) => {
         let array = data;
         array = data.filter((data, index) => index !== id)
         setData(array);
+        dispatch(unFavorite({
+            name
+        }))
     }
 
 

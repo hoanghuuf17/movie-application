@@ -1,34 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
 
-
-const SearchItem = ({ doc, onPress }) => {
-
+const SearchItem = ({ doc }) => {
+    const navigation = useNavigation();
     const { name, image, info, description, actors } = doc
-    const [heart, setHeart] = useState(false);
-
-    const addFavorite = () => {
-        onPress(doc)
-        setHeart(!heart)
-    }
 
     return (
-        <TouchableOpacity activeOpacity={0.5} style={styles.container}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => navigation.navigate('Detail',
+            { name, image, info, description, actors })}>
             <Image source={{ url: image }} style={styles.image} />
-            <View style={styles.detail}>
-                <Text style={styles.name}>{name}</Text>
-                <Text style={styles.info}>{info}</Text>
-                <Text style={styles.rating}><Entypo name="star" size={20} color="#EFCD09" />4.5</Text>
-            </View>
-            <View style={styles.btns}>
-                <TouchableOpacity onPress={() => addFavorite()}>
-                    <AntDesign name={heart ? 'heart' : 'hearto'} size={22} color='white' />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.playBtn}>
-                    <Entypo name="controller-play" size={28} color="#FF6802" />
-                </TouchableOpacity>
+            <View style={{ flex: 6.5 }}>
+                <View style={styles.detail}>
+                    <Text style={styles.name}>{name}</Text>
+                    <Text style={styles.info}>{info}</Text>
+                </View>
+                <View style={styles.btns}>
+                    <Text style={styles.rating}><Entypo name="star" size={20} color="#EFCD09" />4.5</Text>
+                    <TouchableOpacity style={styles.playBtn}>
+                        <Entypo name="controller-play" size={28} color="#FF6802" />
+                    </TouchableOpacity>
+                </View>
             </View>
         </TouchableOpacity>
     )
@@ -63,7 +56,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     info: {
-        color: '#262626'
+        color: '#262626',
+        bottom: 10
     },
     rating: {
         color: 'white',
@@ -72,12 +66,13 @@ const styles = StyleSheet.create({
     btns: {
         justifyContent: 'space-between',
         marginRight: 0,
-        flex: 1
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 10
     },
     playBtn: {
         backgroundColor: 'white',
         borderRadius: 50,
         padding: 3,
-        width: '95%',
     },
 })

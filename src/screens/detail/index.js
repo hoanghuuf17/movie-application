@@ -7,17 +7,22 @@ import RecommendItem from '../../components/RecommendItem.js';
 import styles from './styles';
 import { recommended } from '../../data/movies.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { favorite, addFavorite } from '../../features/appFavorite';
+import { favorite, addFavorite, unFavorite } from '../../features/appFavorite';
 
 const DetailSreen = ({ route, navigation }) => {
     const list = useSelector(favorite);
     const dispatch = useDispatch()
 
     const { name, image, info, description, actors } = route.params
-    const [heart, setHeart] = useState(true);
+    const [heart, setHeart] = useState(false);
 
     const addToFavorite = () => {
         dispatch(addFavorite({ name, image, info, description, actors }));
+        setHeart(!heart);
+    }
+
+    const removeFavorite = () => {
+        dispatch(unFavorite({ name }));
         setHeart(!heart);
     }
 
@@ -31,12 +36,13 @@ const DetailSreen = ({ route, navigation }) => {
                 </TouchableOpacity>
             ),
             headerRight: () => (
-                <TouchableOpacity style={{ marginRight: 20 }} onPress={() => addToFavorite()}>
-                    <AntDesign name={heart ? 'hearto' : 'heart'} size={24} color='white' />
+                <TouchableOpacity style={{ marginRight: 20 }} onPress={() => heart ? removeFavorite() : addToFavorite()}>
+                    <AntDesign name={heart ? 'heart' : 'hearto'} size={24} color='white' />
                 </TouchableOpacity>
             ),
-        })
-    }, [navigation, heart])
+        });
+        list.find(mv => mv.name === name ? setHeart(true) : '')
+    }, [navigation, heart, list])
 
     return (
         <SafeAreaView style={styles.container}>
