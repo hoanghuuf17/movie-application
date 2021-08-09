@@ -6,10 +6,20 @@ import CastItem from '../../components/CastItem.js';
 import RecommendItem from '../../components/RecommendItem.js';
 import styles from './styles';
 import { recommended } from '../../data/movies.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { favorite, addFavorite } from '../../features/appFavorite';
 
 const DetailSreen = ({ route, navigation }) => {
+    const list = useSelector(favorite);
+    const dispatch = useDispatch()
+
     const { name, image, info, description, actors } = route.params
-    const [heart, setHeart] = useState(true)
+    const [heart, setHeart] = useState(true);
+
+    const addToFavorite = () => {
+        dispatch(addFavorite({ name, image, info, description, actors }));
+        setHeart(!heart);
+    }
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -21,7 +31,7 @@ const DetailSreen = ({ route, navigation }) => {
                 </TouchableOpacity>
             ),
             headerRight: () => (
-                <TouchableOpacity style={{ marginRight: 20 }} onPress={() => setHeart(!heart)}>
+                <TouchableOpacity style={{ marginRight: 20 }} onPress={() => addToFavorite()}>
                     <AntDesign name={heart ? 'hearto' : 'heart'} size={24} color='white' />
                 </TouchableOpacity>
             ),

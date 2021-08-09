@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-const Hp = '../images/hp7.png';
 
 
-const SearchItem = ({ name, info, image }) => {
+const SearchItem = ({ doc, onPress }) => {
+
+    const { name, image, info, description, actors } = doc
     const [heart, setHeart] = useState(false);
+
+    const addFavorite = () => {
+        onPress(doc)
+        setHeart(!heart)
+    }
 
     return (
         <TouchableOpacity activeOpacity={0.5} style={styles.container}>
@@ -17,7 +23,7 @@ const SearchItem = ({ name, info, image }) => {
                 <Text style={styles.rating}><Entypo name="star" size={20} color="#EFCD09" />4.5</Text>
             </View>
             <View style={styles.btns}>
-                <TouchableOpacity onPress={() => setHeart(!heart)}>
+                <TouchableOpacity onPress={() => addFavorite()}>
                     <AntDesign name={heart ? 'heart' : 'hearto'} size={22} color='white' />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.playBtn}>
@@ -37,7 +43,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginBottom: 10,
         justifyContent: 'space-between',
-        padding: 10, 
+        padding: 10,
         flex: 1
     },
     image: {
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
     },
     btns: {
         justifyContent: 'space-between',
-        marginRight: 0, 
+        marginRight: 0,
         flex: 1
     },
     playBtn: {

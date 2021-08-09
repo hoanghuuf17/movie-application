@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import styles from './styles';
 import SavedItem from '../../components/SavedItem.js';
+import { useSelector } from 'react-redux';
+import { favorite } from '../../features/appFavorite';
 
 const SavedSreen = () => {
-    const [data, setData] = useState([
-        {
-            id: 1,
-            name: 'Harry Potter 7',
-            rating: 4.5,
-            info: 'Eng | Fiction | 2h10m'
-        },
-        {
-            id: 2,
-            name: 'Iron Man 3',
-            rating: 5.0,
-            info: 'Eng | Action | 1h30m'
-        },
-    ])
+    const listFavorite = useSelector(favorite);
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        setData(listFavorite)
+    }, [listFavorite]);
+
 
     const onDelete = id => {
         let array = data;
-        array = data.filter(d => d.id !== id)
+        array = data.filter((data, index) => index !== id)
         setData(array);
     }
 
@@ -36,9 +31,8 @@ const SavedSreen = () => {
                     <>
                         <ScrollView showsVerticalScrollIndicator={false}>
                             {data &&
-                                data.map((doc) => {
-                                    const { id, name, rating, info } = doc;
-                                    return (<SavedItem key={id} id={id} name={name} rating={rating} info={info} onDelete={onDelete} />)
+                                data.map((doc, index) => {
+                                    return (<SavedItem key={index} id={index} doc={doc} onDelete={onDelete} />)
                                 })}
                         </ScrollView>
                     </>
