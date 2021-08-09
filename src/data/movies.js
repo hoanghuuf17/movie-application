@@ -144,32 +144,32 @@ export const popular = [
     },
     {
         id: 2,
-        name: 'Spirited Away',
-        image: 'https://znews-photo.zadn.vn/w660/Uploaded/fssyy/2021_07_20/3.jpg',
-        info: 'Eng | Horor | 1h50m',
+        name: 'Space Sweepers',
+        image: 'https://assets3.thrillist.com/v1/image/2949462/1584x1056/crop;jpeg_quality=60;progressive.jpg',
+        info: 'Eng | Detective | 2h20m',
         actors: [
             {
                 id: 1,
                 role: 'Actor',
-                name: 'Bill Hader',
-                image: 'https://s.abcnews.com/images/Entertainment/bill-hader-gty-jef-180321_hpMain_4x5_992.jpg',
+                name: 'Chris Evans',
+                image: 'https://format-com-cld-res.cloudinary.com/image/private/s--iyV0tNS3--/c_limit,g_center,h_65535,w_1600/fl_keep_iptc.progressive,q_95/Chris_Evans_sharpened_square_WX3A1739_mxaneg.jpg'
             },
             {
                 id: 2,
                 role: 'Actor',
-                name: 'James McAvoy',
-                image: 'https://www.denofgeek.com/wp-content/uploads/2017/05/james-mcavoy-cast-in-escape.jpeg?fit=1920%2C1280',
+                name: 'Samuel L. Jackson',
+                image: 'https://pbs.twimg.com/profile_images/742877069793742848/c0Ec2mTU.jpg'
 
             },
             {
                 id: 3,
                 role: 'Actor',
-                name: 'Stephen King',
-                image: 'https://bi.im-g.pl/im/98/ac/18/z25873560ICR,Stephen-King-podczas-Book-Expo-America-w-Nowym-Jor.jpg',
+                name: 'Robert Downey Jr',
+                image: 'https://vtv1.mediacdn.vn/thumb_w/650/2019/7/16/lapremiereofspider-man-homecoming-2-15632612816762076172665.jpg'
             }
         ],
-        description: "The jewel in Japanese animation studio Studio Ghibli’s crown, Spirited Away is a glorious bedtime story filled with soot sprites, monsters and phantasms—it’s a movie with the power to coax out the inner child in the most grown-up and jaded among us. A spin on Alice's Adventures in Wonderland (with the same invitation to follow your imagination)"
-    },
+        description: "Right from its first, electrifying sequence involving a bunch of bounty hunting spaceships chasing after a careering piece of garbage, Space Sweepers spins a far-future of multicultural, multilingual human life in space that’s as exhilarating as it is crushingly dystopian. Tae-Ho is a pilot aboard the freighter Victory, along with Captain Jang, engineer Tiger Park"
+    }
 ];
 
 export const recommended = [
@@ -231,30 +231,30 @@ export const recommended = [
     },
     {
         id: 2,
-        name: 'Space Sweepers',
-        image: 'https://assets3.thrillist.com/v1/image/2949462/1584x1056/crop;jpeg_quality=60;progressive.jpg',
-        info: 'Eng | Detective | 2h20m',
+        name: 'Spirited Away',
+        image: 'https://znews-photo.zadn.vn/w660/Uploaded/fssyy/2021_07_20/3.jpg',
+        info: 'Eng | Horor | 1h50m',
         actors: [
             {
                 id: 1,
                 role: 'Actor',
-                name: 'Chris Evans',
-                image: 'https://format-com-cld-res.cloudinary.com/image/private/s--iyV0tNS3--/c_limit,g_center,h_65535,w_1600/fl_keep_iptc.progressive,q_95/Chris_Evans_sharpened_square_WX3A1739_mxaneg.jpg'
+                name: 'Bill Hader',
+                image: 'https://s.abcnews.com/images/Entertainment/bill-hader-gty-jef-180321_hpMain_4x5_992.jpg',
             },
             {
                 id: 2,
                 role: 'Actor',
-                name: 'Samuel L. Jackson',
-                image: 'https://pbs.twimg.com/profile_images/742877069793742848/c0Ec2mTU.jpg'
+                name: 'James McAvoy',
+                image: 'https://www.denofgeek.com/wp-content/uploads/2017/05/james-mcavoy-cast-in-escape.jpeg?fit=1920%2C1280',
 
             },
             {
                 id: 3,
                 role: 'Actor',
-                name: 'Robert Downey Jr',
-                image: 'https://vtv1.mediacdn.vn/thumb_w/650/2019/7/16/lapremiereofspider-man-homecoming-2-15632612816762076172665.jpg'
+                name: 'Stephen King',
+                image: 'https://bi.im-g.pl/im/98/ac/18/z25873560ICR,Stephen-King-podczas-Book-Expo-America-w-Nowym-Jor.jpg',
             }
         ],
-        description: "Right from its first, electrifying sequence involving a bunch of bounty hunting spaceships chasing after a careering piece of garbage, Space Sweepers spins a far-future of multicultural, multilingual human life in space that’s as exhilarating as it is crushingly dystopian. Tae-Ho is a pilot aboard the freighter Victory, along with Captain Jang, engineer Tiger Park"
+        description: "The jewel in Japanese animation studio Studio Ghibli’s crown, Spirited Away is a glorious bedtime story filled with soot sprites, monsters and phantasms—it’s a movie with the power to coax out the inner child in the most grown-up and jaded among us. A spin on Alice's Adventures in Wonderland (with the same invitation to follow your imagination)"
     }
 ];

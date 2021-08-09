@@ -27,13 +27,10 @@ export default styles = StyleSheet.create({
         flex: 3,
         padding: 20,
     },
-    ostItem: {
-        // marginRight : 1
-    },
     pagpination: {
         flexDirection: 'row',
         position: 'absolute',
-        bottom: 25,
+        bottom: 0,
         alignSelf: 'center',
     },
     paginText: {
@@ -48,7 +45,7 @@ export default styles = StyleSheet.create({
     },
     popular: {
         flex: 2.75,
-        marginLeft: 20
+        paddingLeft: 20
     },
     maylike: {
         flex: 2.25,
@@ -70,35 +67,6 @@ export default styles = StyleSheet.create({
     },
     filterPress: {
         padding: 10
-    },
-    ostImg: {
-        width,
-        flex: 1,
-        borderRadius: 20,
-        resizeMode: 'cover'
-    },
-    ostName: {
-        color: 'white',
-        position: 'absolute',
-        bottom: 65,
-        left: 30,
-        fontWeight: '600',
-        fontSize: 20,
-    },
-    ostRating: {
-        color: 'white',
-        position: 'absolute',
-        bottom: 40,
-        left: 30,
-    },
-    playBtn: {
-        position: 'absolute',
-        bottom: 45,
-        right: 40,
-        backgroundColor: 'white',
-        borderRadius: 50,
-        alignItems: 'center',
-        padding: 3
     },
     popularHeader: {
         flexDirection: 'row',
