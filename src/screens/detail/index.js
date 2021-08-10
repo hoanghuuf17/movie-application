@@ -1,31 +1,36 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { View, SafeAreaView, TouchableOpacity, Image, Text, FlatList } from 'react-native';
+import { View, SafeAreaView, TouchableOpacity, Image, Text, FlatList, Dimensions, Pressable } from 'react-native';
 import { WebView } from 'react-native-webview';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import CastItem from '../../components/CastItem.js';
 import RecommendItem from '../../components/RecommendItem.js';
+import Modal from 'react-native-modal'
 import styles from './styles';
 import { recommended } from '../../data/movies.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { favorite, addFavorite, unFavorite } from '../../features/appFavorite';
+const deviceWidth = Dimensions.get('window').width;
 
 const DetailSreen = ({ route, navigation }) => {
     const list = useSelector(favorite);
     const dispatch = useDispatch()
-
-    const { name, image, info, description, actors } = route.params
-    const [heart, setHeart] = useState(false);
-    const [webView, setWebView] = useState(false);
+    const { name, image, info, description, actors, link } = route.params
+    const [state, setState] = useState({
+        heart: false,
+        webView: false,
+        modal: false,
+    })
 
     const addToFavorite = () => {
         dispatch(addFavorite({ name, image, info, description, actors }));
-        setHeart(!heart);
+        setState({ ...state, heart: !state.heart });
     }
 
     const removeFavorite = () => {
         dispatch(unFavorite({ name }));
-        setHeart(!heart);
+        setState({ ...state, heart: !state.heart });
     }
 
     useLayoutEffect(() => {
@@ -38,26 +43,43 @@ const DetailSreen = ({ route, navigation }) => {
                 </TouchableOpacity>
             ),
             headerRight: () => (
-                <TouchableOpacity style={{ marginRight: 20 }} onPress={() => heart ? removeFavorite() : addToFavorite()}>
-                    <AntDesign name={heart ? 'heart' : 'hearto'} size={24} color='white' />
+                <TouchableOpacity style={{ marginRight: 20 }} onPress={() => state.heart ? removeFavorite() : addToFavorite()}>
+                    <AntDesign name={state.heart ? 'heart' : 'hearto'} size={24} color='white' />
                 </TouchableOpacity>
             ),
         });
-        list.find(mv => mv.name === name ? setHeart(true) : '')
-    }, [navigation, heart])
+        list.find(mv => mv.name === name ? setState({ ...state, heart: true }) : '')
+    }, [navigation, state.heart])
 
     return (
         <SafeAreaView style={styles.container}>
-            {webView ? <WebView
-                incognito={true}
-                style={{ flex: 1 }}
-                source={{ url: `https://www.moviefone.com/search/${name}` }} /> :
+            {state.webView ?
+                <Modal
+                    animationIn={'zoomIn'}
+                    animationOut={'zoomOut'}
+                    style={{ flex: 1 }}
+                    deviceWidth={deviceWidth}
+                    isVisible={state.modal}>
+                    <View style={{ height: '50%' }}>
+                        <WebView
+                            incognito={true}
+                            style={{ height: '50%' }}
+                            source={{ url: link }} />
+                        <Pressable style={{ alignItems: 'center', top: 10 }} onPress={() => setState({ ...state, modal: false, webView: false })}>
+                            <MaterialIcons name="cancel" size={30} color='white' />
+                        </Pressable>
+
+                    </View>
+                </Modal>
+                :
                 <View style={styles.box}>
                     <View style={styles.poster}>
                         <Image style={styles.posterImg} source={{ uri: image }} />
                         <Text style={styles.posterRating}><Entypo name="star" size={25} color="#EFCD09" /> 5.0</Text>
                         <View style={styles.posterBgr}>
-                            <TouchableOpacity style={styles.playBtn} onPress={() => setWebView(!webView)}>
+                            <TouchableOpacity style={styles.playBtn} onPress={() => {
+                                setState({ ...state, modal: !state.modal, webView: !state.webView })
+                            }}>
                                 <Entypo name="controller-play" size={28} color="#FF6802" />
                             </TouchableOpacity>
                             <Text style={styles.watchNow}>Watch now</Text>

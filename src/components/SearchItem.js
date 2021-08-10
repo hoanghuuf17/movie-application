@@ -5,11 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 
 const SearchItem = ({ doc }) => {
     const navigation = useNavigation();
-    const { name, image, info, description, actors } = doc
+    const { name, image, info, description, actors, link } = doc
 
     return (
         <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => navigation.navigate('Detail',
-            { name, image, info, description, actors })}>
+            { name, image, info, description, actors, link })}>
             <Image source={{ url: image }} style={styles.image} />
             <View style={{ flex: 6.5 }}>
                 <View style={styles.detail}>

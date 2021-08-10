@@ -16,7 +16,7 @@ import { movies, popular, recommended } from '../../data/movies.js';
 const SearchSreen = () => {
     let array = []
     let list = array.concat(movies, popular, recommended)
-    const [data, setData] = useState(list.splice(0, 2))
+    const [data, setData] = useState(list.splice(0, 4))
 
     const [result, setResult] = useState(data)
     const [input, setInput] = useState('')

@@ -68,6 +68,11 @@ export default styles = StyleSheet.create({
     filterPress: {
         padding: 10
     },
+    filterActive: {
+        backgroundColor: "#843623",
+        padding: 10,
+        borderRadius: 15,
+    },
     popularHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',

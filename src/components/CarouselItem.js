@@ -3,11 +3,10 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from 'rea
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { useNavigation } from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { movies } from '../data/movies';
 
 const SLIDER_WIDTH = Dimensions.get('window').width - 40;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
-const CarouselItem = () => {
+const CarouselItem = ({movies}) => {
     const navigation = useNavigation();
     const [index, setIndex] = useState(0);
     const isCarousel = useRef(null);
@@ -29,7 +28,7 @@ const CarouselItem = () => {
                 autoplayInterval={3000}
                 onSnapToItem={(index) => setIndex(index)}
                 renderItem={({ index, item }) => {
-                    const { id, name, image, info, description, actors } = item;
+                    const { id, name, image, info, description, actors, link } = item;
                     return (
                         <View key={index} style={styles.ostItem}>
                             <Image style={styles.ostImg} source={{ url: image }} />
@@ -37,7 +36,7 @@ const CarouselItem = () => {
                             <Text style={styles.ostRating}><Entypo name="star" size={25} color="#EFCD09" /> 5.0</Text>
                             <TouchableOpacity
                                 style={styles.playBtn}
-                                onPress={() => navigation.navigate('Detail', { id, name, image, info, description, actors })}>
+                                onPress={() => navigation.navigate('Detail', { id, name, image, info, description, actors, link })}>
                                 <Entypo name="controller-play" size={28} color="#FF6802" />
                             </TouchableOpacity>
                         </View>)
