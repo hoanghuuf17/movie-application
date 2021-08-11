@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
