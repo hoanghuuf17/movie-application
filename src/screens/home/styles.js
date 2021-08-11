@@ -16,7 +16,7 @@ export default styles = StyleSheet.create({
         justifyContent: 'center',
     },
     filter: {
-        flex: 0.75,
+        flex: 0.55,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

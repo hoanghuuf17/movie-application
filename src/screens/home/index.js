@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, SafeAreaView, Text, TouchableOpacity, Pressable, FlatList, Modal, ActivityIndicator } from 'react-native';
+import { View, SafeAreaView, Text, TouchableOpacity, Pressable, FlatList, Modal, ActivityIndicator, ScrollView, } from 'react-native';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import RecommendItem from '../../components/RecommendItem.js';
@@ -11,7 +11,6 @@ const HomeSreen = ({ navigation }) => {
     const [state, setState] = useState({
         filter: 'All',
         modal: false,
-        movies: movies,
         popular: popular,
         recommended: recommended
     })
@@ -21,15 +20,14 @@ const HomeSreen = ({ navigation }) => {
         setState({ ...state, modal: true });
         if (type === 'All') {
             setTimeout(() => {
-                setState({ filter: type, modal: false, movies, popular, recommended });
+                setState({ filter: type, modal: false, popular, recommended });
 
             }, 700)
         } else {
-            let a = movies.filter(movie => movie.type === type)
             let b = popular.filter(movie => movie.type === type)
             let c = recommended.filter(movie => movie.type === type)
             setTimeout(() => {
-                setState({ filter: type, modal: false, movies: a, popular: b, recommended: c });
+                setState({ filter: type, modal: false, popular: b, recommended: c });
             }, 500)
         }
 
@@ -60,7 +58,7 @@ const HomeSreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.oustanding}>
-                    <CarouselItem movies={state.movies} />
+                    <CarouselItem movies={movies} />
                 </View>
                 <View style={styles.popular}>
                     <View style={styles.popularHeader}>

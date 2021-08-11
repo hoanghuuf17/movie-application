@@ -7,12 +7,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
 const Pic = '../../images/avatar.jpg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../../features/appAuth';
+import { userInfo } from '../../features/appUser';
 
-const ProfileSreen = () => {
+const ProfileSreen = ({ navigation }) => {
     const dispatch = useDispatch();
-
+    const info = useSelector(userInfo);
 
     const siggOutHandle = () => {
         dispatch(signOut())
@@ -33,23 +34,23 @@ const ProfileSreen = () => {
                     </View>
                 </View>
                 <View style={styles.name}>
-                    <Text style={styles.firstName}>Hoang Toddy</Text>
-                    <Text style={styles.lastName}>Trinh Huu</Text>
+                    <Text style={styles.firstName}>{info.firstName}</Text>
+                    <Text style={styles.lastName}>{info.lastName}</Text>
                 </View>
                 <View style={styles.contain}>
-                    <TouchableOpacity activeOpacity={0.5} style={styles.row}>
+                    <TouchableOpacity activeOpacity={0.5} style={styles.row} onPress={() => navigation.navigate('Info')}>
                         <Foundation style={styles.rowIconLeft} name="info" size={33} color='white' />
-                        <Text style={styles.rowTitle}>My Info</Text>
+                        <Text style={styles.rowTitle}>Profile</Text>
                         <MaterialIcons style={styles.rowIconRight} name='keyboard-arrow-right' size={25} color='white' />
                     </TouchableOpacity>
 
-                    <TouchableOpacity activeOpacity={0.5} style={styles.row}>
+                    <TouchableOpacity activeOpacity={0.5} style={styles.row} onPress={() => navigation.navigate('Setting')}>
                         <Ionicons style={styles.rowIconLeft} name="settings" size={30} color='white' />
                         <Text style={styles.rowTitle}>Setting</Text>
                         <MaterialIcons style={styles.rowIconRight} name='keyboard-arrow-right' size={25} color='white' />
                     </TouchableOpacity>
 
-                    <TouchableOpacity activeOpacity={0.5} style={styles.row}>
+                    <TouchableOpacity activeOpacity={0.5} style={styles.row} onPress={() => navigation.navigate('Policy')}>
                         <MaterialIcons style={styles.rowIconLeft} name="policy" size={30} color='white' />
                         <Text style={styles.rowTitle}>Policy</Text>
                         <MaterialIcons style={styles.rowIconRight} name='keyboard-arrow-right' size={25} color='white' />

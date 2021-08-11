@@ -52,7 +52,7 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         display: 'flex',
         alignItems: 'center',
-        backgroundColor : '#4E4656',
+        backgroundColor: '#4E4656',
         flex: 1,
         marginBottom: 60,
         borderRadius: 50
@@ -63,7 +63,7 @@ export default styles = StyleSheet.create({
     rowTitle: {
         color: 'white',
         fontSize: 18,
-        fontWeight : '600',
+        fontWeight: '600',
         flex: 7
     },
     rowIconRight: {

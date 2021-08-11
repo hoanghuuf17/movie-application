@@ -7,6 +7,9 @@ import HomeSreen from '../screens/home';
 import SearchSreen from '../screens/search';
 import SavedSreen from '../screens/saved';
 import ProfileSreen from '../screens/profile';
+import InfoSreen from '../screens/info';
+import SettingSreen from '../screens/setting';
+import PolicySreen from '../screens/policy';
 import DetailSreen from '../screens/detail';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
@@ -105,7 +108,7 @@ const Root = () => {
                             <Stack.Screen name="Detail" component={DetailSreen} />
                         </Stack.Navigator>}
                 </Tab.Screen>
-                <Tab.Screen name="Profile" component={ProfileSreen} options={{
+                <Tab.Screen name="ProfileScreen" options={{
                     tabBarIcon: ({ focused }) =>
                         <View style={{ position: 'absolute', top: '50%' }}>
                             <Ionicons name={focused ? 'person' : 'person-outline'} size={24} color='white' />
@@ -117,7 +120,15 @@ const Root = () => {
                             useNativeDriver: true,
                         }).start()
                     }
-                })} />
+                })}>
+                    {() =>
+                        <Stack.Navigator>
+                            <Stack.Screen name="Profile" component={ProfileSreen} options={{ headerShown: false }} />
+                            <Stack.Screen name="Info" component={InfoSreen} />
+                            <Stack.Screen name="Setting" component={SettingSreen} />
+                            <Stack.Screen name="Policy" component={PolicySreen} />
+                        </Stack.Navigator>}
+                </Tab.Screen>
             </Tab.Navigator>
             <Animated.View style={{
                 backgroundColor: 'white',

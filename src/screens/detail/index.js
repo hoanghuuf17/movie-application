@@ -55,12 +55,14 @@ const DetailSreen = ({ route, navigation }) => {
         <SafeAreaView style={styles.container}>
             {state.webView ?
                 <Modal
-                    animationIn={'zoomIn'}
-                    animationOut={'zoomOut'}
-                    style={{ flex: 1 }}
+                    animationIn={'slideInUp'}
+                    animationOut={'slideOutDown'}
+                    animationInTiming={600}
+                    animationOutTiming={600}
+                    style={{ flex: 1, backgroundColor: '#000' }}
                     deviceWidth={deviceWidth}
                     isVisible={state.modal}>
-                    <View style={{ height: '50%' }}>
+                    <View style={{ height: '90%' }}>
                         <WebView
                             incognito={true}
                             style={{ height: '50%' }}
