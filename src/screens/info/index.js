@@ -5,13 +5,11 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { userInfo, editUser } from '../../features/appUser';
-import { favorite } from '../../features/appFavorite';
 import Modal from 'react-native-modal';
 
 const InfoSreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const user = useSelector(userInfo);
-    const num = useSelector(favorite);
     const [modal, setModal] = useState(false);
     const [info, setInfo] = useState({
         firstName: user.firstName,
@@ -107,13 +105,14 @@ const InfoSreen = ({ navigation }) => {
                         <Text style={styles.rowDetail}>{info.email}</Text>
                     </View>
                     <View style={styles.row}>
+                        <Text style={styles.name}>Phone</Text>
+                        <Text style={styles.rowDetail}>09358010130</Text>
+                    </View>
+                    <View style={styles.row}>
                         <Text style={styles.name}>Joined</Text>
                         <Text style={styles.rowDetail}>05, May, 2021</Text>
                     </View>
-                    <View style={styles.row}>
-                        <Text style={styles.name}>Favorite</Text>
-                        <Text style={styles.rowDetail}>{num.length}</Text>
-                    </View>
+
                 </View>
             </View>
         </ScrollView>
