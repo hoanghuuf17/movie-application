@@ -15,9 +15,15 @@ export default styles = StyleSheet.create({
     contain: {
 
     },
+    title:{
+        color: '#ddd',
+        left: 10,
+        fontSize: 16,
+        bottom: -10
+    },
     part:{
         backgroundColor: '#282533',
-        marginVertical : 20
+        marginVertical : 25
     },
     row: {
         marginHorizontal: 20,

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, Animated, Dimensions } from 'react-native';
+import { View, Animated, Dimensions, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,10 +17,13 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Feather from 'react-native-vector-icons/Feather';
+import { useSelector } from 'react-redux';
+import { favorite } from '../features/appFavorite';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const Root = () => {
+    const num = useSelector(favorite);
     const tabOffsetValue = useRef(new Animated.Value(0)).current;
     const getWidth = () => {
         let width = Dimensions.get('window').width;
@@ -93,6 +96,12 @@ const Root = () => {
                     tabBarIcon: ({ focused }) =>
                         <View style={{ position: 'absolute', top: '50%' }}>
                             <AntDesign name={focused ? 'heart' : 'hearto'} size={22} color='white' />
+                            {num.length === 0 ?
+                                <>
+                                </> :
+                                <View style={{ alignItems: 'center', position: 'absolute', height: 20, width: 20, backgroundColor: '#e65e5e', right: -15, top: -7, borderRadius: 50, color: 'white' }}>
+                                    <Text style={{ color: 'white' }}>{num.length}</Text>
+                                </View>}
                         </View>
                 }} listeners={({ navigation, route }) => ({
                     tabPress: e => {

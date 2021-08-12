@@ -7,13 +7,13 @@ import styles from './styles';
 
 const SettingSreen = ({ navigation }) => {
     const [isEnabled, setIsEnabled] = useState({
-        push: false,
+        push: true,
         email: false,
-        sound: false,
-        keep: false,
+        sound: true,
+        keep: true,
         clear: false,
         lock: false,
-        finger: false,
+        finger: true,
     });
 
     useLayoutEffect(() => {
@@ -61,6 +61,7 @@ const SettingSreen = ({ navigation }) => {
         <ScrollView style={styles.container}>
             <View style={styles.box}>
                 <View style={styles.contain}>
+                    <Text style={styles.title}>General</Text>
                     <View style={styles.part}>
                         <View style={styles.row}>
                             <MaterialIcons style={styles.icon} name="notifications-on" size={24} color="#00D369" />
@@ -95,7 +96,7 @@ const SettingSreen = ({ navigation }) => {
                                 value={isEnabled.sound}
                             />
                         </View>
-                        <View style={styles.row}>
+                        <View style={[styles.row, { marginVertical: 0, marginTop: 10 }]}>
                             <MaterialIcons style={styles.icon} name="update" size={24} color="grey" />
                             <Text style={styles.name}>Keep app up to date</Text>
                             <Switch
@@ -107,6 +108,7 @@ const SettingSreen = ({ navigation }) => {
                             />
                         </View>
                     </View>
+                    <Text style={styles.title}>Secure</Text>
                     <View style={styles.part}>
                         <View style={styles.row}>
                             <MaterialIcons style={styles.icon} name="cached" size={24} color="#0b7178" />
@@ -130,7 +132,7 @@ const SettingSreen = ({ navigation }) => {
                                 value={isEnabled.lock}
                             />
                         </View>
-                        <View style={styles.row}>
+                        <View style={[styles.row, { marginVertical: 0, marginTop: 10 }]}>
                             <MaterialIcons style={styles.icon} name="fingerprint" size={24} color="#d6564d" />
                             <Text style={styles.name}>Use Fingerprint</Text>
                             <Switch
