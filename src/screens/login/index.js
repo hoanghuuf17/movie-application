@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useContext, useState } from 'react';
-import { View, SafeAreaView, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import React, { useLayoutEffect, useState } from 'react';
+import { View, SafeAreaView, Text, TouchableOpacity, TextInput, Pressable, ActivityIndicator, Modal } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { signIn } from '../../features/appAuth';
 
 const LoginSreen = ({ navigation }) => {
+    const [modal, setModal] = useState(false)
     const dispatch = useDispatch();
     const [auth, setAuth] = useState({
         email: '',
@@ -15,9 +16,13 @@ const LoginSreen = ({ navigation }) => {
 
     const loginHandle = () => {
         if (auth.email !== '' || auth.password !== '') {
-            dispatch(signIn({
-                email: auth.email
-            }))
+            setModal(true);
+            setTimeout(() => {
+                setModal(false);
+                dispatch(signIn({
+                    email: auth.email
+                }))
+            }, 1000)
         } else {
             alert('Please fill your infomation')
         }
@@ -38,6 +43,14 @@ const LoginSreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <Modal
+                transparent={true}
+                animationType={'none'}
+                visible={modal}>
+                <View style={{ flex: 1, backgroundColor: '#000', opacity: 0.5, alignItems: 'center', justifyContent: 'center' }} >
+                    <ActivityIndicator size="large" color="#fff" />
+                </View>
+            </Modal>
             <View style={styles.box}>
                 <View style={styles.options}>
                     <Text style={styles.txtOptions}>Log in with one of following options</Text>
@@ -70,6 +83,7 @@ const LoginSreen = ({ navigation }) => {
                             style={[styles.textInput, { color: '#9C9C9C' }]}
                             placeholder='Enter your password'
                             placeholderTextColor='#9C9C9C'
+                            secureTextEntry={true}
                         />
                     </View>
                     <View style={styles.login}>

@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useContext, useState } from 'react';
-import { View, SafeAreaView, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import React, { useLayoutEffect, useState } from 'react';
+import { View, SafeAreaView, Text, TouchableOpacity, TextInput, Pressable, ActivityIndicator, Modal } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ import styles from './styles';
 
 const SignUpSreen = ({ navigation }) => {
     const dispatch = useDispatch();
+    const [modal, setModal] = useState(false)
     const [auth, setAuth] = useState({
         name: '',
         email: '',
@@ -15,9 +16,17 @@ const SignUpSreen = ({ navigation }) => {
     });
 
     const signUpHandel = () => {
-        dispatch(signUp({
-            email: auth.email,
-        }));
+        if (auth.name !== '' || auth.email !== '' || auth.password !== '') {
+            setModal(true);
+            setTimeout(() => {
+                setModal(false);
+                dispatch(signUp({
+                    email: auth.email,
+                }));
+            }, 1000)
+        } else {
+            alert('Please fill your infomation')
+        }
     }
 
     useLayoutEffect(() => {
@@ -34,6 +43,14 @@ const SignUpSreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <Modal
+                transparent={true}
+                animationType={'none'}
+                visible={modal}>
+                <View style={{ flex: 1, backgroundColor: '#000', opacity: 0.5, alignItems: 'center', justifyContent: 'center' }} >
+                    <ActivityIndicator size="large" color="#fff" />
+                </View>
+            </Modal>
             <View style={styles.box}>
                 <View style={styles.options}>
                     <Text style={styles.txtOptions}>Sign up with one of following options</Text>
@@ -76,6 +93,7 @@ const SignUpSreen = ({ navigation }) => {
                             style={[styles.textInput, { color: '#9C9C9C' }]}
                             placeholder='Enter your password'
                             placeholderTextColor='#9C9C9C'
+                            secureTextEntry={true}
                         />
                     </View>
                     <View style={styles.login}>
