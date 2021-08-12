@@ -2,12 +2,14 @@ import React, { useLayoutEffect, useState } from 'react';
 import { View, SafeAreaView, Text, TouchableOpacity, TextInput, Pressable, ActivityIndicator, Modal } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Octicons from 'react-native-vector-icons/Octicons';
 import styles from './styles';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../features/appAuth';
 
 const LoginSreen = ({ navigation }) => {
     const [modal, setModal] = useState(false)
+    const [isSecure, setIsSecure] = useState(true)
     const dispatch = useDispatch();
     const [auth, setAuth] = useState({
         email: '',
@@ -83,8 +85,15 @@ const LoginSreen = ({ navigation }) => {
                             style={[styles.textInput, { color: '#9C9C9C' }]}
                             placeholder='Enter your password'
                             placeholderTextColor='#9C9C9C'
-                            secureTextEntry={true}
+                            secureTextEntry={isSecure}
                         />
+                        <TouchableOpacity onPress={() => setIsSecure(!isSecure)} style={{ position: 'absolute', right: 20, top: '30%' }}>
+                            <Octicons
+                                name={isSecure ? 'eye-closed' : 'eye'}
+                                color='#ddd'
+                                size={20}
+                            />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.login}>
                         <TouchableOpacity activeOpacity={0.5} onPress={loginHandle}>
